@@ -12,7 +12,7 @@ import { PLAYER, SCREEN, STEP } from './config.js';
 const TITLE_SECONDS = 8;
 const FIGHT_SECONDS = 29;
 /** The beat the pilot holds fire on, so hostiles gather for the frame. */
-const SWARM_SECONDS = 7.0;
+const SWARM_SECONDS = 10.5;
 const OVER_SECONDS = 104;
 /** The render clock each scene freezes at; drives decorative motion only. */
 const TITLE_CLOCK = 4.7;

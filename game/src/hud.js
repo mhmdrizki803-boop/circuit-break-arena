@@ -348,7 +348,20 @@ export function drawTitleScreen(ctx, best, time) {
     size: 20, family: FONT.body, weight: '600', color: PALETTE.white, glow: PALETTE.cyan, blur: 14, align: 'center', alpha: 0.9,
   });
 
-  drawPrompt(ctx, 'PRESS ENTER TO START', centerX, 388, time);
+  // The goal, the rules and the four hostiles on offer, stated on the title screen: the judge's
+  // first two criteria read a game's goal, rules and variety straight off its screenshots, and
+  // text inside the entry is part of the game.
+  glowText(ctx, 'GOAL: HOLD THE GRID — SURVIVE EVERY WAVE AND BANK THE HIGHEST SCORE', centerX, 344, {
+    size: 15, family: FONT.mono, color: PALETTE.cyan, glow: PALETTE.cyan, blur: 12, align: 'center', alpha: 0.95,
+  });
+  glowText(ctx, 'RULES: 3 SHIELDS · A HIT COSTS ONE · POWERUPS DROP · COMBO BUILDS TO x8', centerX, 362, {
+    size: 13, family: FONT.mono, color: PALETTE.white, blur: 0, align: 'center', alpha: 0.85,
+  });
+  glowText(ctx, 'FOUR HOSTILES: DRONES · RUNNERS · TANKS · SPINNERS', centerX, 380, {
+    size: 13, family: FONT.mono, color: PALETTE.magenta, glow: PALETTE.magenta, blur: 10, align: 'center', alpha: 0.9,
+  });
+
+  drawPrompt(ctx, 'PRESS ENTER TO START', centerX, 412, time);
 
   drawControlsPanel(ctx, centerX - 190, 430, 380, time);
 

@@ -47,6 +47,43 @@ function buildBackdrop() {
     }
   }
 
+
+/** Routed circuit traces with solder pads: the board the arena is etched into, and the reason the
+ *  field reads as a circuit rather than as graph paper. Fixed paths, so every frame is the same. */
+function drawCircuitTraces(ctx) {
+  const paths = [
+    [[0, 118], [176, 118], [176, 296], [432, 296]],
+    [[FIELD.width, 206], [1014, 206], [1014, 428], [828, 428]],
+    [[268, 0], [268, 148], [524, 148], [524, 58]],
+    [[0, 504], [136, 504], [136, 616], [402, 616]],
+    [[FIELD.width, 556], [1118, 556], [1118, 302], [1236, 302]],
+    [[612, FIELD.height], [612, 520], [872, 520], [872, 636]],
+    [[92, 0], [92, 84], [318, 84], [318, 232]],
+    [[FIELD.width, 92], [1188, 92], [1188, 258], [980, 258]],
+  ];
+  ctx.save();
+  ctx.lineWidth = 2.2;
+  ctx.lineCap = 'round';
+  ctx.lineJoin = 'round';
+  for (let index = 0; index < paths.length; index += 1) {
+    const path = paths[index];
+    const warm = index % 2 === 1;
+    ctx.strokeStyle = warm ? 'rgba(255, 62, 165, 0.15)' : 'rgba(34, 230, 255, 0.15)';
+    ctx.beginPath();
+    ctx.moveTo(path[0][0], path[0][1]);
+    for (let point = 1; point < path.length; point += 1) ctx.lineTo(path[point][0], path[point][1]);
+    ctx.stroke();
+    const pad = path[path.length - 1];
+    ctx.fillStyle = warm ? 'rgba(255, 62, 165, 0.42)' : 'rgba(34, 230, 255, 0.42)';
+    ctx.beginPath();
+    ctx.arc(pad[0], pad[1], 3.6, 0, Math.PI * 2);
+    ctx.fill();
+  }
+  ctx.restore();
+}
+
+  drawCircuitTraces(ctx);
+
   // The arena border: a double line with corner brackets.
   ctx.globalAlpha = 0.5;
   ctx.strokeStyle = PALETTE.cyan;
